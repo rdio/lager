@@ -47,7 +47,8 @@
 -define(LOGMSG(Level, Pid, Msg),
     case ?SHOULD_LOG(Level) of
         true ->
-            _ =lager:log(Level, Pid, Msg),
+            Metadata = [{pid, Pid}, {error_logger, true}],
+            _ =lager:log(Level, Metadata, Msg),
             ok;
         _ -> ok
     end).
@@ -55,7 +56,8 @@
 -define(LOGFMT(Level, Pid, Fmt, Args),
     case ?SHOULD_LOG(Level) of
         true ->
-            _ = lager:log(Level, Pid, Fmt, Args),
+            Metadata = [{pid, Pid}, {error_logger, true}],
+            _ = lager:log(Level, Metadata, Fmt, Args),
             ok;
         _ -> ok
     end).
