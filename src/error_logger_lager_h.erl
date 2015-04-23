@@ -48,7 +48,7 @@
     case ?SHOULD_LOG(Level) of
         true ->
             Metadata = [{pid, Pid}, {error_logger, true}],
-            _ =lager:log(Level, Pid, Msg),
+            _ =lager:log(Level, Metadata, Msg),
             ok;
         _ -> ok
     end).
